@@ -32,12 +32,13 @@ Create a .env file in the root and DB_URL should be your mongoDB URL and port mi
 - MongoDB
 - Dotenv
 - Nodemon
+- Bcrypt
 
 ## Live Link
 
 #### You may check the server with this live link :
 
-- [meal-matrix-server](https://mm-server-xi.vercel.app/)
+- [meal-matrix-server 2.0](https://mm-server-20-wazedbiplobs-projects.vercel.app/)
 
 ## API Endpoints
 
