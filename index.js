@@ -23,6 +23,9 @@ const run = async () => {
     const productCollection = db.collection("products");
     const reviewCollection = db.collection("reviews");
     const userCollection = db.collection("users");
+    const donorCollection = db.collection("donors");
+    const commentCollection = db.collection("comment");
+    const volunteersCollection = db.collection("volunteers");
 
     app.get("/products", async (req, res) => {
       const cursor = productCollection.find();
@@ -30,11 +33,44 @@ const run = async () => {
       res.send({ status: true, data: products });
     });
 
+    app.get("/comments", async (req, res) => {
+      const cursor = commentCollection.find();
+      const products = await cursor.toArray();
+      res.send({ status: true, data: products });
+    });
+
+    app.post("/post-comments", async (req, res) => {
+      const comment = await commentCollection.insertOne(req?.body);
+      console.log(comment);
+      res.send({ status: true, data: comment });
+    });
+
+    app.post("/post-testimonial", async (req, res) => {
+      const comment = await reviewCollection.insertOne(req?.body);
+      res.send({ status: true, data: comment });
+    });
+
+    app.get("/volunteers", async (req, res) => {
+      const volunteers = await volunteersCollection.find().toArray();
+      res.send({ status: true, data: volunteers });
+    });
+    app.post("/register-volunteer", async (req, res) => {
+      const volunteer = await volunteersCollection.insertOne(req?.body);
+      res.send({ status: true, data: volunteer });
+    });
+
     app.get("/donor-reviews", async (req, res) => {
       const cursor = reviewCollection.find();
       const reviews = await cursor.toArray();
       res.send({ status: true, data: reviews });
     });
+
+    app.get("/donor-details", async (req, res) => {
+      const cursor = donorCollection.find();
+      const reviews = await cursor.toArray();
+      res.send({ status: true, data: reviews });
+    });
+
     app.post("/auth/register", async (req, res) => {
       const userData = req.body;
       const result = await userCollection.countDocuments({

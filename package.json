@@ -3,9 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "nodemonConfig": {
+    "watch": [
+      "**/*.js",
+      "**/*.jsx"
+    ],
+    "ignore": [
+      "F:\\DumpStack.log.tmp"
+    ]
+  },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
+    "dev": "nodemon --watch index.js",
     "build": "echo 'no build required'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,6 +29,6 @@
     "mongodb": "^6.6.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.2"
   }
 }
